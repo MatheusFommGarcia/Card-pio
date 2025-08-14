@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gourmet Online — Cardápio</title>
+  <meta name="theme-color" content="#111315" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Preloader -->
+  <div id="preloader" aria-hidden="true">
+    <div class="loader">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    </div>
+    <p class="loader-text">Carregando sabores…</p>
+  </div>
+
+  <!-- =================== LOGIN GATE =================== -->
+  <section id="loginGate" class="login-wrapper" aria-label="Área de Login">
+    <div class="login-card">
+      <div class="login-brand">
+        <i class="bx bx-restaurant"></i>
+        <h1>Gourmet Online</h1>
+        <p>Entre para acessar o cardápio</p>
+      </div>
+
+      <form id="loginForm" class="login-form" autocomplete="on" novalidate>
+        <label class="field">
+          <span>E-mail</span>
+          <input type="email" id="email" placeholder="voce@email.com" required />
+        </label>
+        <label class="field">
+          <span>Senha</span>
+          <input type="password" id="password" placeholder="••••••••" required minlength="4" />
+        </label>
+        <button type="submit" class="btn primary">Entrar</button>
+        <p class="hint">Use <b>demo@site.com</b> / <b>123456</b> para testar</p>
+      </form>
+
+      <button id="themeToggleLogin" class="btn ghost small">
+        <i class="bx bx-sun"></i><span> Alternar tema</span>
+      </button>
+    </div>
+    <div class="login-bg"></div>
+  </section>
+
+  <!-- =================== APP (CARDÁPIO) =================== -->
+  <div id="app" class="app hidden">
+    <!-- Header -->
+    <header class="header">
+      <div class="container header-inner">
+        <a href="#" class="logo">
+          <i class="bx bx-restaurant"></i> Gourmet Online
+        </a>
+
+        <div class="header-actions">
+          <button id="themeToggle" class="icon-btn" aria-label="Alternar tema">
+            <i class="bx bx-sun"></i>
+          </button>
+          <button id="logoutBtn" class="icon-btn" aria-label="Sair">
+            <i class="bx bx-log-out"></i>
+          </button>
+          <button class="hamburger" aria-label="Abrir menu" aria-expanded="false">
+            <i class="bx bx-menu"></i>
+          </button>
+        </div>
+
+        <nav class="nav">
+          <a href="#entradas">Entradas</a>
+          <a href="#principais">Pratos</a>
+          <a href="#sobremesas">Sobremesas</a>
+          <a href="#bebidas">Bebidas</a>
+          <a href="#destaque" class="badge-link">Especial do dia</a>
+          <a href="#favoritos" class="fav-link"><i class="bx bxs-heart"></i> Favoritos</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero com Banner Promocional (carrossel) -->
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-content container">
+        <div class="promo-carousel" role="region" aria-label="Promoções">
+          <div class="promo-track">
+            <article class="promo-slide">
+              <h2>Segunda da Massa</h2>
+              <p>Pratos italianos com <b>20% OFF</b> • Somente hoje</p>
+            </article>
+            <article class="promo-slide">
+              <h2>Menu Executivo</h2>
+              <p>Entrada + Principal + Bebida por <b>R$ 49,90</b></p>
+            </article>
+            <article class="promo-slide">
+              <h2>Sobremesa em Dobro</h2>
+              <p>Na compra de 2, a mais barata sai <b>GRÁTIS</b></p>
+            </article>
+          </div>
+          <div class="promo-dots" aria-hidden="true"></div>
+        </div>
+
+        <a href="#cardapio" class="btn primary reveal">
+          Ver cardápio <i class="bx bx-chevrons-down"></i>
+        </a>
+      </div>
+
+      <!-- Parallax décor -->
+      <img class="parallax deco deco-1" data-speed="0.25" src="https://svgshare.com/i/16Y1.svg" alt="" aria-hidden="true">
+      <img class="parallax deco deco-2" data-speed="0.15" src="https://svgshare.com/i/16Y0.svg" alt="" aria-hidden="true">
+    </section>
+
+    <!-- Especial do dia -->
+    <section id="destaque" class="highlight container">
+      <div class="highlight-card reveal">
+        <div class="ribbon">Especial do Dia</div>
+        <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?q=80&w=1400&auto=format&fit=crop" alt="Risoto de cogumelos trufado" loading="lazy">
+        <div class="highlight-info">
+          <h2>Risoto de Cogumelos Trufado</h2>
+          <p>Arborio cremoso com mix de cogumelos, finalizado com azeite de trufas e parmesão.</p>
+          <div class="price-line">
+            <span class="price">R$ 59,00</span>
+            <button class="btn ghost open-whatsapp" data-item="Risoto de Cogumelos Trufado" data-price="59,00">
+              <i class="bx bxl-whatsapp"></i> Pedir no WhatsApp
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filtros -->
+    <section id="cardapio" class="filters container">
+      <div class="filter-bar reveal">
+        <div class="chip-group">
+          <button class="chip active" data-filter="all">Tudo</button>
+          <button class="chip" data-filter="entradas">Entradas</button>
+          <button class="chip" data-filter="principais">Pratos</button>
+          <button class="chip" data-filter="sobremesas">Sobremesas</button>
+          <button class="chip" data-filter="bebidas">Bebidas</button>
+          <button class="chip" data-filter="favoritos"><i class="bx bxs-heart"></i> Favoritos</button>
+        </div>
+        <div class="search">
+          <i class="bx bx-search"></i>
+          <input type="text" id="searchInput" placeholder="Buscar item…" aria-label="Buscar item">
+        </div>
+      </div>
+    </section>
+
+    <!-- Grid de cards -->
+    <main class="menu container">
+      <!-- Entradas -->
+      <section id="entradas" class="menu-section">
+        <h3 class="section-title reveal">Entradas</h3>
+        <div class="grid">
+          <article class="card reveal" data-id="item-1" data-category="entradas" data-title="Bruschetta Italiana" data-price="18,00" data-desc="Pão rústico, tomate, manjericão e azeite extra virgem." data-img="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?q=80&w=1400&auto=format&fit=crop">
+            <button class="fav-btn" aria-label="Favoritar"><i class="bx bx-heart"></i></button>
+            <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?q=80&w=1400&auto=format&fit=crop" alt="Bruschetta Italiana" loading="lazy">
+            <div class="card-body">
+              <h4>Bruschetta Italiana</h4>
+              <p>Pão rústico, tomate, manjericão e azeite extra virgem.</p>
+              <div class="card-foot">
+                <span class="price">R$ 18,00</span>
+                <div class="actions">
+                  <button class="btn icon open-modal" aria-label="Detalhes"><i class="bx bx-show"></i></button>
+                  <button class="btn icon open-whatsapp" aria-label="WhatsApp" data-item="Bruschetta Italiana" data-price="18,00"><i class="bx bxl-whatsapp"></i></button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card reveal" data-id="item-2" data-category="entradas" data-title="Salada Caesar" data-price="25,00" data-desc="Alface romana, frango grelhado, croutons e molho Caesar." data-img="https://images.unsplash.com/photo-1543353071-873f17a7a088?q=80&w=1400&auto=format&fit=crop">
+            <button class="fav-btn" aria-label="Favoritar"><i class="bx bx-heart"></i></button>
+            <img src="https://images.unsplash.com/photo-1543353071-873f17a7a088?q=80&w=1400&auto=format&fit=crop" alt="Salada Caesar" loading="lazy">
+            <div class="card-body">
+              <h4>Salada Caesar</h4>
+              <p>Alface romana, frango grelhado, croutons e molho Caesar.</p>
+              <div class="card-foot">
+                <span class="price">R$ 25,00</span>
+                <div class="actions">
+                  <button class="btn icon open-modal"><i class="bx bx-show"></i></button>
+                  <button class="btn icon open-whatsapp" data-item="Salada Caesar" data-price="25,00"><i class="bx bxl-whatsapp"></i></button>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Pratos principais -->
+      <section id="principais" class="menu-section">
+        <h3 class="section-title reveal">Pratos</h3>
+        <div class="grid">
+          <article class="card reveal" data-id="item-3" data-category="principais" data-title="Filé Mignon ao Molho Madeira" data-price="65,00" data-desc="Acompanha arroz branco e batatas rústicas." data-img="https://images.unsplash.com/photo-1600891964036-c77ad6d9f4c5?q=80&w=1400&auto=format&fit=crop">
+            <button class="fav-btn" aria-label="Favoritar"><i class="bx bx-heart"></i></button>
+            <img src="https://images.unsplash.com/photo-1600891964036-c77ad6d9f4c5?q=80&w=1400&auto=format&fit=crop" alt="Filé Mignon ao Molho Madeira" loading="lazy">
+            <div class="card-body">
+              <h4>Filé Mignon ao Molho Madeira</h4>
+              <p>Acompanha arroz branco e batatas rústicas.</p>
+              <div class="card-foot">
+                <span class="price">R$ 65,00</span>
+                <div class="actions">
+                  <button class="btn icon open-modal"><i class="bx bx-show"></i></button>
+                  <button class="btn icon open-whatsapp" data-item="Filé Mignon ao Molho Madeira" data-price="65,00"><i class="bx bxl-whatsapp"></i></button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card reveal" data-id="item-4" data-category="principais" data-title="Spaghetti à Carbonara" data-price="48,00" data-desc="Receita italiana com pancetta e parmesão." data-img="https://images.unsplash.com/photo-1546069901-eacef0df6022?q=80&w=1400&auto=format&fit=crop">
+            <button class="fav-btn" aria-label="Favoritar"><i class="bx bx-heart"></i></button>
+            <img src="https://images.unsplash.com/photo-1546069901-eacef0df6022?q=80&w=1400&auto=format&fit=crop" alt="Spaghetti à Carbonara" loading="lazy">
+            <div class="card-body">
+              <h4>Spaghetti à Carbonara</h4>
+              <p>Receita italiana com pancetta e parmesão.</p>
+              <div class="card-foot">
+                <span class="price">R$ 48,00</span>
+                <div class="actions">
+                  <button class="btn icon open-modal"><i class="bx bx-show"></i></button>
+                  <button class="btn icon open-whatsapp" data-item="Spaghetti à Carbonara" data-price="48,00"><i class="bx bxl-whatsapp"></i></button>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Sobremesas -->
+      <section id="sobremesas" class="menu-section">
+        <h3 class="section-title reveal">Sobremesas</h3>
+        <div class="grid">
+          <article class="card reveal" data-id="item-5" data-category="sobremesas" data-title="Cheesecake de Frutas Vermelhas" data-price="22,00" data-desc="Base crocante, creme suave e calda artesanal." data-img="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?q=80&w=1400&auto=format&fit=crop">
+            <button class="fav-btn" aria-label="Favoritar"><i class="bx bx-heart"></i></button>
+            <img src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?q=80&w=1400&auto=format&fit=crop" alt="Cheesecake" loading="lazy">
+            <div class="card-body">
+              <h4>Cheesecake de Frutas Vermelhas</h4>
+              <p>Base crocante, creme suave e calda artesanal.</p>
+              <div class="card-foot">
+                <span class="price">R$ 22,00</span>
+                <div class="actions">
+                  <button class="btn icon open-modal"><i class="bx bx-show"></i></button>
+                  <button class="btn icon open-whatsapp" data-item="Cheesecake de Frutas Vermelhas" data-price="22,00"><i class="bx bxl-whatsapp"></i></button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card reveal" data-id="item-6" data-category="sobremesas" data-title="Petit Gâteau" data-price="24,00" data-desc="Bolo de chocolate com casca crocante e recheio cremoso." data-img="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1400&auto=format&fit=crop">
+            <button class="fav-btn" aria-label="Favoritar"><i class="bx bx-heart"></i></button>
+            <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1400&auto=format&fit=crop" alt="Petit Gâteau" loading="lazy">
+            <div class="card-body">
+              <h4>Petit Gâteau</h4>
+              <p>Bolo de chocolate com casca crocante e recheio cremoso.</p>
+              <div class="card-foot">
+                <span class="price">R$ 24,00</span>
+                <div class="actions">
+                  <button class="btn icon open-modal"><i class="bx bx-show"></i></button>
+                  <button class="btn icon open-whatsapp" data-item="Petit Gâteau" data-price="24,00"><i class="bx bxl-whatsapp"></i></button>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Bebidas -->
+      <section id="bebidas" class="menu-section">
+        <h3 class="section-title reveal">Bebidas</h3>
+        <div class="grid">
+          <article class="card reveal" data-id="item-7" data-category="bebidas" data-title="Limonada Siciliana" data-price="12,00" data-desc="Refrescante com toque de hortelã." data-img="https://images.unsplash.com/photo-1544145945-f90425340c7e?q=80&w=1400&auto=format&fit=crop">
+            <button class="fav-btn" aria-label="Favoritar"><i class="bx bx-heart"></i></button>
+            <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?q=80&w=1400&auto=format&fit=crop" alt="Limonada Siciliana" loading="lazy">
+            <div class="card-body">
+              <h4>Limonada Siciliana</h4>
+              <p>Refrescante com toque de hortelã.</p>
+              <div class="card-foot">
+                <span class="price">R$ 12,00</span>
+                <div class="actions">
+                  <button class="btn icon open-modal"><i class="bx bx-show"></i></button>
+                  <button class="btn icon open-whatsapp" data-item="Limonada Siciliana" data-price="12,00"><i class="bx bxl-whatsapp"></i></button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card reveal" data-id="item-8" data-category="bebidas" data-title="Espresso" data-price="8,00" data-desc="Blend exclusivo da casa, torra média." data-img="https://images.unsplash.com/photo-1498804103079-a6351b050096?q=80&w=1400&auto=format&fit=crop">
+            <button class="fav-btn" aria-label="Favoritar"><i class="bx bx-heart"></i></button>
+            <img src="https://images.unsplash.com/photo-1498804103079-a6351b050096?q=80&w=1400&auto=format&fit=crop" alt="Café Espresso" loading="lazy">
+            <div class="card-body">
+              <h4>Espresso</h4>
+              <p>Blend exclusivo da casa, torra média.</p>
+              <div class="card-foot">
+                <span class="price">R$ 8,00</span>
+                <div class="actions">
+                  <button class="btn icon open-modal"><i class="bx bx-show"></i></button>
+                  <button class="btn icon open-whatsapp" data-item="Espresso" data-price="8,00"><i class="bx bxl-whatsapp"></i></button>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <!-- Voltar ao topo -->
+    <button id="backToTop" class="fab" aria-label="Voltar ao topo">
+      <i class="bx bx-up-arrow-alt"></i>
+    </button>
+
+    <!-- Botão flutuante WhatsApp geral -->
+    <a id="waFloat" class="wa-float" href="#" target="_blank" rel="noopener" aria-label="Conversar no WhatsApp">
+      <i class="bx bxl-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-inner">
+        <p>© 2025 Gourmet Online — Todos os direitos reservados.</p>
+        <div class="socials">
+          <a href="#" aria-label="Instagram"><i class="bx bxl-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="bx bxl-facebook-circle"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="bx bxl-whatsapp"></i></a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Modal Detalhes -->
+  <dialog id="itemModal" class="modal">
+    <button class="modal-close" aria-label="Fechar"><i class="bx bx-x"></i></button>
+    <img class="modal-img" src="" alt="" />
+    <div class="modal-info">
+      <h3 class="modal-title">Título</h3>
+      <p class="modal-desc">Descrição</p>
+      <div class="modal-foot">
+        <span class="price modal-price">R$ --</span>
+        <button class="btn primary modal-wa"><i class="bx bxl-whatsapp"></i> Pedir</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
